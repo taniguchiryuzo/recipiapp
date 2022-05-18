@@ -24,17 +24,17 @@ fclose($file);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>textファイル書き込み型todoリスト（一覧画面）</title>
+    <title>レシピ集(一覧画面)</title>
 </head>
 
 <body>
     <fieldset>
-        <legend>textファイル書き込み型todoリスト（一覧画面）</legend>
+        <legend>レシピ集</legend>
         <a href="input.php">入力画面</a>
         <table>
             <thead>
                 <tr>
-                    <th>レシピ集</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
