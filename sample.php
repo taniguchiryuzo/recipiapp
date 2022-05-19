@@ -22,6 +22,45 @@ if (!empty($_FILES)) {
 } else {
     $MSG = '画像を選択してください';
 }
+$title = $_POST['title'];
+$make = $_POST['make'];
+$food = $_POST['food'];
+// $_FILES = $_POST['_FILES'];
+
+
+// データ1件を1行にまとめる（最後に改行を入れる）
+$write_data = "{$title} {$food} \n {$make}\n";
+
+
+// ファイルを開く。引数が'a'である部分に注目！
+$file = fopen('data/questionnaire.csv', 'a');
+
+// ファイルをロックする
+flock($file, LOCK_EX);
+
+// 指定したファイルに指定したデータを書き込む
+fwrite($file, $write_data,);
+
+// ファイルのロックを解除する
+flock($file, LOCK_UN);
+// ファイルを閉じる
+fclose($file);
+
+$str = '';
+
+
+$file = fopen('data/questionnaire.csv', 'r');
+flock($file, LOCK_EX);
+
+if ($file) {
+    while ($line = fgets($file)) {
+        $str .= "<tr><td>{$line}</td></tr> ";
+    }
+}
+
+flock($file, LOCK_UN);
+fclose($file);
+
 ?>
 
 
@@ -40,18 +79,18 @@ if (!empty($_FILES)) {
     <main>
 
         <section class="form-container">
+            <div>
+                <!--  メッセージを表示している箇所-->
+                <p><?php if (!empty($MSG)) echo $MSG; ?></p>
 
-            <!--  メッセージを表示している箇所-->
-            <p><?php if (!empty($MSG)) echo $MSG; ?></p>
+                <!-- 画像を表示している箇所 -->
+                <?= $str ?>
+                <?php if (!empty($img_path)) {; ?>
 
-            <!-- 画像を表示している箇所 -->
-            <?= $str ?>
-            <?php if (!empty($img_path)) {; ?>
+                    <img src="<?php echo $img_path; ?>" alt="">
 
-                <img src="<?php echo $img_path; ?>" alt="">
-
-            <?php }; ?>
-
+                <?php }; ?>
+            </div>
 
             <!-- （1）formタグにenctype="multipart/form-data"を記載 -->
             <form action="" method="post" enctype="multipart/form-data">

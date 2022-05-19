@@ -23,8 +23,8 @@
             <div id="input_pluralBox">
                 <div id="input_plural">
                     材料：<input type="text" name="food" class="form-control" placeholder="にんじん">
-                    <input type="button" value="＋" class="add pluralBtn">
-                    <input type="button" value="－" class="del pluralBtn">
+                    <input type="button" name="food" value="＋" class="add pluralBtn">
+                    <input type="button" name="food" value="－" class="del pluralBtn">
                 </div>
             </div>
             <div>
