@@ -1,5 +1,6 @@
 <?php
 
+
 $str = '';
 
 
@@ -8,7 +9,7 @@ flock($file, LOCK_EX);
 
 if ($file) {
     while ($line = fgets($file)) {
-        $str .= "<tr><td>{$line}</td></tr>";
+        $str .= "<tr><td>{$line}</td></tr> ";
     }
 }
 
@@ -39,6 +40,15 @@ fclose($file);
             </thead>
             <tbody>
                 <?= $str ?>
+                <?php
+                if (!empty($path)) {  ?>
+                    <!-- （5）ローカルフォルダに移動した画像を画面に表示する -->
+                    <img src="echo <?php $path; ?>" alt="">
+                <?php
+                }
+                ?>
+
+
             </tbody>
         </table>
     </fieldset>

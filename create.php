@@ -26,11 +26,11 @@ if (
 $title = $_POST['title'];
 $make = $_POST['make'];
 $food = $_POST['food'];
-$picture = $_POST['picture'];
+// $_FILES = $_POST['_FILES'];
 
 
 // データ1件を1行にまとめる（最後に改行を入れる）
-$write_data = "{$title} {$food} \n {$make}  \n {$picture}";
+$write_data = "{$title} {$food} \n {$make}\n";
 
 
 // ファイルを開く。引数が'a'である部分に注目！
